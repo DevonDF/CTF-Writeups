@@ -1,7 +1,5 @@
 # Skynet - TryHackMe
 
-## Recon Stage
-
 Start with an nmap:
 
 ```
