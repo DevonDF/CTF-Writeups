@@ -70,6 +70,8 @@ One directory it found was /squirrelmail, so I open that up and looks like they 
 
 ![](2021-03-13-09-22-41.png)
 
+Searching with searchsploit for the squirrelmail version results in the following:
+
 ![](2021-03-13-09-24-09.png)
 
 Looks like this version has a local file inclusion. I test this:
@@ -78,7 +80,12 @@ Looks like this version has a local file inclusion. I test this:
 
 Hmmh, seems not to be working for unauthorised users...
 
-Nmap also found an SMB share, so I will run a scan to see if we can enumerate this to find any possible username to bruteforce:
+Nmap also found an SMB share, so I will run an enumeration scan using nmap scripts:
+
+`nmap -p 445 --script=smb-enum-shares.nse,smb-enum-users.nse 10.10.223.17`
+
+The result:
+
 
 ![](2021-03-13-09-32-09.png)
 
