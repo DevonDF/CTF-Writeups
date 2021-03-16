@@ -117,12 +117,6 @@ jonah:spiderman123
 
 I head over to /administrator and input the username and password - success! We are in the admin panel.. let's see if we can get a shell.
 
-I notice that I can edit a post and upload an image, however, I have been able to upload a .txt file, and, once it's uploaded, I can access it from the /images/ directory:
-
-![](2021-03-14-10-08-57.png)
-
-![](2021-03-14-10-09-05.png)
-
 So I will create a meterpreter reverse tcp shell to upload using msfvenom:
 
 ```
